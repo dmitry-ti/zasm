@@ -16,6 +16,33 @@
   </styles>
 
   <definitions>
+
+    <context id="comment" style-ref="comment" end-at-line-end="true">
+      <start>;</start>
+    </context>
+
+    <context id="preprocessor" style-ref="preprocessor">
+      <prefix>^#</prefix>
+      <keyword>target</keyword>
+      <keyword>code</keyword>
+      <keyword>data</keyword>
+      <keyword>if</keyword>
+      <keyword>elif</keyword>
+      <keyword>else</keyword>
+      <keyword>endif</keyword>
+      <keyword>end</keyword>
+      <keyword>include</keyword>
+      <keyword>insert</keyword>
+      <keyword>local</keyword>
+      <keyword>endlocal</keyword>
+      <keyword>assert</keyword>
+      <keyword>define</keyword>
+      <keyword>charset</keyword>
+      <keyword>compress</keyword>
+      <keyword>cpath</keyword>
+      <keyword>cflags</keyword>
+    </context>
+
     <context id="opcode" style-ref="opcode">
       <keyword>adc</keyword>
       <keyword>add</keyword>
@@ -114,30 +141,9 @@
       <keyword>iy</keyword>
     </context>
 
-    <context id="preprocessor" style-ref="preprocessor">
-      <prefix>^#</prefix>
-      <keyword>target</keyword>
-      <keyword>code</keyword>
-      <keyword>data</keyword>
-      <keyword>if</keyword>
-      <keyword>elif</keyword>
-      <keyword>else</keyword>
-      <keyword>endif</keyword>
-      <keyword>end</keyword>
-      <keyword>include</keyword>
-      <keyword>insert</keyword>
-      <keyword>local</keyword>
-      <keyword>endlocal</keyword>
-      <keyword>assert</keyword>
-      <keyword>define</keyword>
-      <keyword>charset</keyword>
-      <keyword>compress</keyword>
-      <keyword>cpath</keyword>
-      <keyword>cflags</keyword>
-    </context>
-
     <context id="pseudo">
       <include>
+
         <context style-ref="pseudo">
           <keyword>org</keyword>
           <keyword>defb</keyword>
@@ -196,44 +202,49 @@
           <keyword>z180</keyword>
           <keyword>8080</keyword>
         </context>
+
       </include>
     </context>
 
     <context id="hexadecimal">
       <include>
+
         <context style-ref="number">
           <prefix>\$</prefix>
           <keyword>[0-9a-fA-F]+</keyword>
         </context>
 
         <context style-ref="number">
-          <suffix>[hH]</suffix>
+          <suffix>[hH]\b</suffix>
           <keyword>[0-9a-fA-F]+</keyword>
         </context>
 
         <context style-ref="number">
-          <prefix>0[xX]</prefix>
+          <prefix>\b0[xX]</prefix>
           <keyword>[0-9a-fA-F]+</keyword>
         </context>
+
       </include>
     </context>
 
     <context id="binary">
       <include>
+
         <context style-ref="number">
           <prefix>%</prefix>
           <keyword>[01]+</keyword>
         </context>
 
         <context style-ref="number">
-          <suffix>[bB]</suffix>
+          <prefix>\b0[bB]</prefix>
           <keyword>[01]+</keyword>
         </context>
 
         <context style-ref="number">
-          <prefix>0[bB]</prefix>
+          <suffix>[bB]\b</suffix>
           <keyword>[01]+</keyword>
         </context>
+
       </include>
     </context>
 
@@ -242,20 +253,16 @@
       <keyword>[0-9]+[dD]</keyword>
     </context>
 
-    <context id="comment" style-ref="comment" end-at-line-end="true">
-      <start>;</start>
-    </context>
-
     <context id="zasm">
       <include>
+        <context ref="comment"/>
+        <context ref="preprocessor"/>
         <context ref="opcode"/>
         <context ref="register"/>
-        <context ref="preprocessor"/>
         <context ref="pseudo"/>
         <context ref="hexadecimal"/>
         <context ref="binary"/>
         <context ref="decimal"/>
-        <context ref="comment"/>
       </include>
     </context>
 
