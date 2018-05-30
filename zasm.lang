@@ -136,84 +136,110 @@
       <keyword>cflags</keyword>
     </context>
 
-    <context id="pseudo" style-ref="pseudo">
-      <keyword>\\.area</keyword>
-      <keyword>org</keyword>
-      <keyword>\.org</keyword>
-      <keyword>\.loc</keyword>
-      <keyword>defb</keyword>
-      <keyword>db</keyword>
-      <keyword>\.db</keyword>
-      <keyword>\.byte</keyword>
-      <keyword>defw</keyword>
-      <keyword>dw</keyword>
-      <keyword>\.dw</keyword>
-      <keyword>\.word</keyword>
-      <keyword>\.long</keyword>
-      <keyword>defm</keyword>
-      <keyword>dm</keyword>
-      <keyword>\.dm</keyword>
-      <keyword>\.text</keyword>
-      <keyword>\.ascii</keyword>
-      <keyword>\.asciz</keyword>
-      <keyword>defs</keyword>
-      <keyword>ds</keyword>
-      <keyword>\.ds</keyword>
-      <keyword>\.block</keyword>
-      <keyword>\.blkb</keyword>
-      <keyword>data</keyword>
-      <keyword>align</keyword>
-      <keyword>\.align</keyword>
-      <keyword>if</keyword>
-      <keyword>endif</keyword>
-      <keyword>end</keyword>
-      <keyword>\.end</keyword>
-      <keyword>include</keyword>
-      <keyword>incbin</keyword>
-      <keyword>\.globl</keyword>
-      <keyword>macro</keyword>
-      <keyword>\.macro</keyword>
-      <keyword>endm</keyword>
-      <keyword>\.endm</keyword>
-      <keyword>rept</keyword>
-      <keyword>\.rept</keyword>
-      <keyword>dup</keyword>
-      <keyword>\.dup</keyword>
-      <keyword>edup</keyword>
-      <keyword>\.edup</keyword>
-      <keyword>\.phase</keyword>
-      <keyword>\.dephase</keyword>
-      <keyword>\.z80</keyword>
-      <keyword>\.z180</keyword>
-      <keyword>\.8080</keyword>
-      <keyword>equ</keyword>
-      <keyword>defl</keyword>
-      <keyword>set</keyword>
+    <context id="pseudo">
+      <include>
+        <context style-ref="pseudo">
+          <keyword>org</keyword>
+          <keyword>defb</keyword>
+          <keyword>db</keyword>
+          <keyword>defw</keyword>
+          <keyword>dw</keyword>
+          <keyword>defm</keyword>
+          <keyword>dm</keyword>
+          <keyword>defs</keyword>
+          <keyword>ds</keyword>
+          <keyword>data</keyword>
+          <keyword>align</keyword>
+          <keyword>if</keyword>
+          <keyword>endif</keyword>
+          <keyword>end</keyword>
+          <keyword>include</keyword>
+          <keyword>incbin</keyword>
+          <keyword>macro</keyword>
+          <keyword>endm</keyword>
+          <keyword>rept</keyword>
+          <keyword>dup</keyword>
+          <keyword>edup</keyword>
+          <keyword>equ</keyword>
+          <keyword>defl</keyword>
+          <keyword>set</keyword>
+        </context>
+
+        <context style-ref="pseudo">
+          <prefix>.</prefix>
+          <keyword>area</keyword>
+          <keyword>org</keyword>
+          <keyword>loc</keyword>
+          <keyword>db</keyword>
+          <keyword>byte</keyword>
+          <keyword>dw</keyword>
+          <keyword>word</keyword>
+          <keyword>long</keyword>
+          <keyword>dm</keyword>
+          <keyword>text</keyword>
+          <keyword>ascii</keyword>
+          <keyword>asciz</keyword>
+          <keyword>ds</keyword>
+          <keyword>block</keyword>
+          <keyword>blkb</keyword>
+          <keyword>align</keyword>
+          <keyword>end</keyword>
+          <keyword>globl</keyword>
+          <keyword>macro</keyword>
+          <keyword>endm</keyword>
+          <keyword>rept</keyword>
+          <keyword>dup</keyword>
+          <keyword>edup</keyword>
+          <keyword>phase</keyword>
+          <keyword>dephase</keyword>
+          <keyword>z80</keyword>
+          <keyword>z180</keyword>
+          <keyword>8080</keyword>
+        </context>
+      </include>
     </context>
 
-    <context id="decimal" style-ref="number">
-      <keyword>[0-9]+</keyword>
-      <keyword>[0-9]+[dD]</keyword>
-    </context>
+    <context id="hexadecimal">
+      <include>
+        <context style-ref="number">
+          <prefix>\$</prefix>
+          <keyword>[0-9a-fA-F]+</keyword>
+        </context>
 
-    <context id="hexadecimal" style-ref="number">
-      <keyword>\$[0-9a-fA-F]+</keyword>
-      <keyword>[0-9a-fA-F]+[hH]</keyword>
-      <keyword>0[xX][0-9a-fA-F]+</keyword>
+        <context style-ref="number">
+          <suffix>[hH]</suffix>
+          <keyword>[0-9a-fA-F]+</keyword>
+        </context>
+
+        <context style-ref="number">
+          <prefix>0[xX]</prefix>
+          <keyword>[0-9a-fA-F]+</keyword>
+        </context>
+      </include>
     </context>
 
     <context id="binary">
       <include>
         <context style-ref="number">
-          <match>\b%[01]+\b</match>
+          <prefix>%</prefix>
+          <keyword>[01]+</keyword>
         </context>
+
         <context style-ref="number">
-          <match>\b[01]+[bB]\b</match>
+          <suffix>[bB]</suffix>
+          <keyword>[01]+</keyword>
         </context>
+
         <context style-ref="number">
-          <match>\b0[bB][01]+\b</match>
+          <prefix>0[bB]</prefix>
+          <keyword>[01]+</keyword>
         </context>
       </include>
+    </context>
+
+    <context id="decimal" style-ref="number">
+      <keyword>[0-9]+</keyword>
+      <keyword>[0-9]+[dD]</keyword>
     </context>
 
     <context id="comment" style-ref="comment" end-at-line-end="true">
@@ -227,7 +253,7 @@
         <context ref="preprocessor"/>
         <context ref="pseudo"/>
         <context ref="hexadecimal"/>
-<!--        <context ref="binary"/>-->
+        <context ref="binary"/>
         <context ref="decimal"/>
         <context ref="comment"/>
       </include>
