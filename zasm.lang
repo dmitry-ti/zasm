@@ -210,7 +210,7 @@
       <include>
 
         <context style-ref="number">
-          <prefix>\$</prefix>
+          <prefix>(?&lt;=[\s,\(])\$</prefix>
           <keyword>[0-9a-fA-F]+</keyword>
         </context>
 
@@ -231,7 +231,7 @@
       <include>
 
         <context style-ref="number">
-          <prefix>%</prefix>
+          <prefix>(?&lt;=[\s,\(])%</prefix>
           <keyword>[01]+</keyword>
         </context>
 
