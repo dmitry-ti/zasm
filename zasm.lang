@@ -7,262 +7,261 @@
   </metadata>
 
   <styles>
-    <style id="opcode" _name="Opcode" map-to="def:keyword"/>
-    <style id="register" _name="Register" map-to="def:keyword"/>
-    <style id="preprocessor" _name="Preprocessor" map-to="def:preprocessor"/>
-    <style id="pseudo" _name="Pseudo instruction" map-to="def:function"/>
-    <style id="number" _name="Decimal number" map-to="def:number"/>
-    <style id="comment" _name="Comment" map-to="def:comment"/>
+    <style id="opcode" name="Opcode" map-to="def:keyword"/>
+    <style id="register" name="Register" map-to="def:keyword"/>
+    <style id="preprocessor" name="Preprocessor" map-to="def:preprocessor"/>
+    <style id="pseudo" name="Pseudo instruction" map-to="def:function"/>
+    <style id="number" name="Decimal number" map-to="def:number"/>
+    <style id="comment" name="Comment" map-to="def:comment"/>
+    <style id="string" name="String" map-to="def:string"/>
   </styles>
 
   <definitions>
 
-    <context id="comment" style-ref="comment" end-at-line-end="true">
-      <start>;</start>
-    </context>
-
-    <context id="preprocessor" style-ref="preprocessor">
-      <prefix>^#</prefix>
-      <keyword>target</keyword>
-      <keyword>code</keyword>
-      <keyword>data</keyword>
-      <keyword>if</keyword>
-      <keyword>elif</keyword>
-      <keyword>else</keyword>
-      <keyword>endif</keyword>
-      <keyword>end</keyword>
-      <keyword>include</keyword>
-      <keyword>insert</keyword>
-      <keyword>local</keyword>
-      <keyword>endlocal</keyword>
-      <keyword>assert</keyword>
-      <keyword>define</keyword>
-      <keyword>charset</keyword>
-      <keyword>compress</keyword>
-      <keyword>cpath</keyword>
-      <keyword>cflags</keyword>
-    </context>
-
-    <context id="opcode" style-ref="opcode">
-      <keyword>adc</keyword>
-      <keyword>add</keyword>
-      <keyword>and</keyword>
-      <keyword>bit</keyword>
-      <keyword>call</keyword>
-      <keyword>ccf</keyword>
-      <keyword>cp</keyword>
-      <keyword>cpd</keyword>
-      <keyword>cpdr</keyword>
-      <keyword>cpi</keyword>
-      <keyword>cpir</keyword>
-      <keyword>cpl</keyword>
-      <keyword>daa</keyword>
-      <keyword>dec</keyword>
-      <keyword>di</keyword>
-      <keyword>djnz</keyword>
-      <keyword>ei</keyword>
-      <keyword>ex</keyword>
-      <keyword>exx</keyword>
-      <keyword>halt</keyword>
-      <keyword>im</keyword>
-      <keyword>in</keyword>
-      <keyword>inc</keyword>
-      <keyword>ind</keyword>
-      <keyword>indr</keyword>
-      <keyword>ini</keyword>
-      <keyword>inir</keyword>
-      <keyword>jp</keyword>
-      <keyword>jr</keyword>
-      <keyword>ld</keyword>
-      <keyword>ldd</keyword>
-      <keyword>lddr</keyword>
-      <keyword>ldi</keyword>
-      <keyword>ldir</keyword>
-      <keyword>neg</keyword>
-      <keyword>nop</keyword>
-      <keyword>or</keyword>
-      <keyword>otdr</keyword>
-      <keyword>otir</keyword>
-      <keyword>out</keyword>
-      <keyword>outd</keyword>
-      <keyword>outi</keyword>
-      <keyword>pop</keyword>
-      <keyword>push</keyword>
-      <keyword>res</keyword>
-      <keyword>ret</keyword>
-      <keyword>reti</keyword>
-      <keyword>retn</keyword>
-      <keyword>rl</keyword>
-      <keyword>rla</keyword>
-      <keyword>rlc</keyword>
-      <keyword>rlca</keyword>
-      <keyword>rld</keyword>
-      <keyword>rr</keyword>
-      <keyword>rra</keyword>
-      <keyword>rrc</keyword>
-      <keyword>rrca</keyword>
-      <keyword>rrd</keyword>
-      <keyword>rst</keyword>
-      <keyword>sbc</keyword>
-      <keyword>scf</keyword>
-      <keyword>set</keyword>
-      <keyword>sla</keyword>
-      <keyword>ssl</keyword>
-      <keyword>sl1</keyword>
-      <keyword>sra</keyword>
-      <keyword>srl</keyword>
-      <keyword>sub</keyword>
-      <keyword>xor</keyword>
-    </context>
-
-    <context id="register" style-ref="register">
-      <!-- 8 bit -->
-      <keyword>a</keyword>
-      <keyword>b</keyword>
-      <keyword>c</keyword>
-      <keyword>d</keyword>
-      <keyword>e</keyword>
-      <keyword>h</keyword>
-      <keyword>l</keyword>
-      <keyword>i</keyword>
-      <keyword>r</keyword>
-      <keyword>ixh</keyword>
-      <keyword>ixl</keyword>
-      <keyword>iyh</keyword>
-      <keyword>iyl</keyword>
-
-      <!-- 16bit -->
-      <keyword>bc</keyword>
-      <keyword>de</keyword>
-      <keyword>hl</keyword>
-      <keyword>pc</keyword>
-      <keyword>sp</keyword>
-      <keyword>ix</keyword>
-      <keyword>iy</keyword>
-    </context>
-
-    <context id="pseudo">
+    <context id="zasm">
       <include>
 
-        <context style-ref="pseudo">
-          <keyword>org</keyword>
-          <keyword>defb</keyword>
-          <keyword>db</keyword>
-          <keyword>defw</keyword>
-          <keyword>dw</keyword>
-          <keyword>defm</keyword>
-          <keyword>dm</keyword>
-          <keyword>defs</keyword>
-          <keyword>ds</keyword>
+        <context id="string" style-ref="string" end-at-line-end="true">
+          <start>"</start>
+          <end>"</end>
+        </context>
+
+        <context id="comment" style-ref="comment" end-at-line-end="true">
+          <start>;</start>
+        </context>
+
+        <context id="preprocessor" style-ref="preprocessor">
+          <prefix>^#</prefix>
+          <keyword>target</keyword>
+          <keyword>code</keyword>
           <keyword>data</keyword>
-          <keyword>align</keyword>
           <keyword>if</keyword>
+          <keyword>elif</keyword>
+          <keyword>else</keyword>
           <keyword>endif</keyword>
           <keyword>end</keyword>
           <keyword>include</keyword>
-          <keyword>incbin</keyword>
-          <keyword>macro</keyword>
-          <keyword>endm</keyword>
-          <keyword>rept</keyword>
-          <keyword>dup</keyword>
-          <keyword>edup</keyword>
-          <keyword>equ</keyword>
-          <keyword>defl</keyword>
+          <keyword>insert</keyword>
+          <keyword>local</keyword>
+          <keyword>endlocal</keyword>
+          <keyword>assert</keyword>
+          <keyword>define</keyword>
+          <keyword>charset</keyword>
+          <keyword>compress</keyword>
+          <keyword>cpath</keyword>
+          <keyword>cflags</keyword>
+        </context>
+
+        <context id="opcode" style-ref="opcode">
+          <keyword>adc</keyword>
+          <keyword>add</keyword>
+          <keyword>and</keyword>
+          <keyword>bit</keyword>
+          <keyword>call</keyword>
+          <keyword>ccf</keyword>
+          <keyword>cp</keyword>
+          <keyword>cpd</keyword>
+          <keyword>cpdr</keyword>
+          <keyword>cpi</keyword>
+          <keyword>cpir</keyword>
+          <keyword>cpl</keyword>
+          <keyword>daa</keyword>
+          <keyword>dec</keyword>
+          <keyword>di</keyword>
+          <keyword>djnz</keyword>
+          <keyword>ei</keyword>
+          <keyword>ex</keyword>
+          <keyword>exx</keyword>
+          <keyword>halt</keyword>
+          <keyword>im</keyword>
+          <keyword>in</keyword>
+          <keyword>inc</keyword>
+          <keyword>ind</keyword>
+          <keyword>indr</keyword>
+          <keyword>ini</keyword>
+          <keyword>inir</keyword>
+          <keyword>jp</keyword>
+          <keyword>jr</keyword>
+          <keyword>ld</keyword>
+          <keyword>ldd</keyword>
+          <keyword>lddr</keyword>
+          <keyword>ldi</keyword>
+          <keyword>ldir</keyword>
+          <keyword>neg</keyword>
+          <keyword>nop</keyword>
+          <keyword>or</keyword>
+          <keyword>otdr</keyword>
+          <keyword>otir</keyword>
+          <keyword>out</keyword>
+          <keyword>outd</keyword>
+          <keyword>outi</keyword>
+          <keyword>pop</keyword>
+          <keyword>push</keyword>
+          <keyword>res</keyword>
+          <keyword>ret</keyword>
+          <keyword>reti</keyword>
+          <keyword>retn</keyword>
+          <keyword>rl</keyword>
+          <keyword>rla</keyword>
+          <keyword>rlc</keyword>
+          <keyword>rlca</keyword>
+          <keyword>rld</keyword>
+          <keyword>rr</keyword>
+          <keyword>rra</keyword>
+          <keyword>rrc</keyword>
+          <keyword>rrca</keyword>
+          <keyword>rrd</keyword>
+          <keyword>rst</keyword>
+          <keyword>sbc</keyword>
+          <keyword>scf</keyword>
           <keyword>set</keyword>
+          <keyword>sla</keyword>
+          <keyword>ssl</keyword>
+          <keyword>sl1</keyword>
+          <keyword>sra</keyword>
+          <keyword>srl</keyword>
+          <keyword>sub</keyword>
+          <keyword>xor</keyword>
         </context>
 
-        <context style-ref="pseudo">
-          <prefix>.</prefix>
-          <keyword>area</keyword>
-          <keyword>org</keyword>
-          <keyword>loc</keyword>
-          <keyword>db</keyword>
-          <keyword>byte</keyword>
-          <keyword>dw</keyword>
-          <keyword>word</keyword>
-          <keyword>long</keyword>
-          <keyword>dm</keyword>
-          <keyword>text</keyword>
-          <keyword>ascii</keyword>
-          <keyword>asciz</keyword>
-          <keyword>ds</keyword>
-          <keyword>block</keyword>
-          <keyword>blkb</keyword>
-          <keyword>align</keyword>
-          <keyword>end</keyword>
-          <keyword>globl</keyword>
-          <keyword>macro</keyword>
-          <keyword>endm</keyword>
-          <keyword>rept</keyword>
-          <keyword>dup</keyword>
-          <keyword>edup</keyword>
-          <keyword>phase</keyword>
-          <keyword>dephase</keyword>
-          <keyword>z80</keyword>
-          <keyword>z180</keyword>
-          <keyword>8080</keyword>
+        <context id="register" style-ref="register">
+          <!-- 8 bit -->
+          <keyword>a</keyword>
+          <keyword>b</keyword>
+          <keyword>c</keyword>
+          <keyword>d</keyword>
+          <keyword>e</keyword>
+          <keyword>h</keyword>
+          <keyword>l</keyword>
+          <keyword>i</keyword>
+          <keyword>r</keyword>
+          <keyword>ixh</keyword>
+          <keyword>ixl</keyword>
+          <keyword>iyh</keyword>
+          <keyword>iyl</keyword>
+
+          <!-- 16bit -->
+          <keyword>bc</keyword>
+          <keyword>de</keyword>
+          <keyword>hl</keyword>
+          <keyword>pc</keyword>
+          <keyword>sp</keyword>
+          <keyword>ix</keyword>
+          <keyword>iy</keyword>
         </context>
 
-      </include>
-    </context>
+        <context id="pseudo">
+          <include>
 
-    <context id="hexadecimal">
-      <include>
+            <context style-ref="pseudo">
+              <keyword>org</keyword>
+              <keyword>defb</keyword>
+              <keyword>db</keyword>
+              <keyword>defw</keyword>
+              <keyword>dw</keyword>
+              <keyword>defm</keyword>
+              <keyword>dm</keyword>
+              <keyword>defs</keyword>
+              <keyword>ds</keyword>
+              <keyword>data</keyword>
+              <keyword>align</keyword>
+              <keyword>if</keyword>
+              <keyword>endif</keyword>
+              <keyword>end</keyword>
+              <keyword>include</keyword>
+              <keyword>incbin</keyword>
+              <keyword>macro</keyword>
+              <keyword>endm</keyword>
+              <keyword>rept</keyword>
+              <keyword>dup</keyword>
+              <keyword>edup</keyword>
+              <keyword>equ</keyword>
+              <keyword>defl</keyword>
+              <keyword>set</keyword>
+            </context>
 
-        <context style-ref="number">
-          <prefix>(?&lt;=[\s,\(])\$</prefix>
-          <keyword>[0-9a-fA-F]+</keyword>
+            <context style-ref="pseudo">
+              <prefix>.</prefix>
+              <keyword>area</keyword>
+              <keyword>org</keyword>
+              <keyword>loc</keyword>
+              <keyword>db</keyword>
+              <keyword>byte</keyword>
+              <keyword>dw</keyword>
+              <keyword>word</keyword>
+              <keyword>long</keyword>
+              <keyword>dm</keyword>
+              <keyword>text</keyword>
+              <keyword>ascii</keyword>
+              <keyword>asciz</keyword>
+              <keyword>ds</keyword>
+              <keyword>block</keyword>
+              <keyword>blkb</keyword>
+              <keyword>align</keyword>
+              <keyword>end</keyword>
+              <keyword>globl</keyword>
+              <keyword>macro</keyword>
+              <keyword>endm</keyword>
+              <keyword>rept</keyword>
+              <keyword>dup</keyword>
+              <keyword>edup</keyword>
+              <keyword>phase</keyword>
+              <keyword>dephase</keyword>
+              <keyword>z80</keyword>
+              <keyword>z180</keyword>
+              <keyword>8080</keyword>
+            </context>
+
+          </include>
         </context>
 
-        <context style-ref="number">
-          <suffix>[hH]\b</suffix>
-          <keyword>[0-9a-fA-F]+</keyword>
+        <context id="hexadecimal">
+          <include>
+
+            <context style-ref="number">
+              <prefix>(?&lt;=[\s,\(])\$</prefix>
+              <keyword>[0-9a-fA-F]+</keyword>
+            </context>
+
+            <context style-ref="number">
+              <suffix>[hH]\b</suffix>
+              <keyword>[0-9a-fA-F]+</keyword>
+            </context>
+
+            <context style-ref="number">
+              <prefix>\b0[xX]</prefix>
+              <keyword>[0-9a-fA-F]+</keyword>
+            </context>
+
+          </include>
         </context>
 
-        <context style-ref="number">
-          <prefix>\b0[xX]</prefix>
-          <keyword>[0-9a-fA-F]+</keyword>
+        <context id="binary">
+          <include>
+
+            <context style-ref="number">
+              <prefix>(?&lt;=[\s,\(])%</prefix>
+              <keyword>[01]+</keyword>
+            </context>
+
+            <context style-ref="number">
+              <prefix>\b0[bB]</prefix>
+              <keyword>[01]+</keyword>
+            </context>
+
+            <context style-ref="number">
+              <suffix>[bB]\b</suffix>
+              <keyword>[01]+</keyword>
+            </context>
+
+          </include>
         </context>
 
-      </include>
-    </context>
-
-    <context id="binary">
-      <include>
-
-        <context style-ref="number">
-          <prefix>(?&lt;=[\s,\(])%</prefix>
-          <keyword>[01]+</keyword>
+        <context id="decimal" style-ref="number">
+          <keyword>[0-9]+</keyword>
+          <keyword>[0-9]+[dD]</keyword>
         </context>
 
-        <context style-ref="number">
-          <prefix>\b0[bB]</prefix>
-          <keyword>[01]+</keyword>
-        </context>
-
-        <context style-ref="number">
-          <suffix>[bB]\b</suffix>
-          <keyword>[01]+</keyword>
-        </context>
-
-      </include>
-    </context>
-
-    <context id="decimal" style-ref="number">
-      <keyword>[0-9]+</keyword>
-      <keyword>[0-9]+[dD]</keyword>
-    </context>
-
-    <context id="zasm">
-      <include>
-        <context ref="comment"/>
-        <context ref="preprocessor"/>
-        <context ref="opcode"/>
-        <context ref="register"/>
-        <context ref="pseudo"/>
-        <context ref="hexadecimal"/>
-        <context ref="binary"/>
-        <context ref="decimal"/>
       </include>
     </context>
 
